@@ -1,0 +1,36 @@
+import java.util.Scanner;
+ public class Admin {
+    String adminUsername = "UMM";
+    String adminPassword = "2024";
+    User[] studentList = new User[100];
+    int studentCount = 0;
+
+    void addStudent() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Masukkan Nama : ");
+        String nama = scanner.nextLine();
+        String nim;
+        do {
+            System.out.print("Masukkan NIM  : ");
+            nim = scanner.nextLine();
+            if (nim.length() != 15) {
+                System.out.println("NIM Tidak Valid.\nNIM HARUS 15 DIGIT!!!.");
+            }
+        } while (nim.length() != 15);
+        System.out.print("Masukkan Fakultas     : ");
+        String fakultas = scanner.nextLine();
+        System.out.print("Masukkan Program Studi    : ");
+        String programStudi = scanner.nextLine();
+
+        User newUser = new User(nim, nama, fakultas, programStudi);
+        studentList[studentCount] = newUser;
+        studentCount++;
+    }
+
+    void displayStudents() {
+        for (int i = 0; i < studentCount; i++) {
+            User user = studentList[i];
+            System.out.println(user.nama + " (" + user.nim + ") - " + user.fakultas + ", " + user.programStudi);
+        }
+    }
+}
